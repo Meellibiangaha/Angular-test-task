@@ -6,7 +6,7 @@ export const ADMIN_PROFILE_DATA: UserData = {
   first_name: 'Иван',
   last_name: 'Иванов',
   phone_number: '79281234567',
-  webSite_url: 'admin.site.com',
+  webSite_url: 'https://github.com/Meellibiangaha',
   role: 'Admin',
   avatar_url: ''
 }
@@ -19,5 +19,5 @@ export const USER_PROFILE_DATA: UserData = {
   phone_number: '79287654321',
   webSite_url: null,
   role: 'User',
-  avatar_url: 'user-test-avatar.svg'
+  avatar_url: '../../../../../assets/icons/user-avatar.svg'
 }

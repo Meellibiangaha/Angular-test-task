@@ -1,15 +1,40 @@
 <mat-card class="profile-card">
   <mat-card-header>
-    <mat-card-title-group>
-      <img class="profile-instructor-profile-dialog-avatar"
-          [src]="user?.avatar_url ? user?.avatar_url : '../../../../../assets/icons/avatar-standart.svg.svg'" alt=""
-          width="52px" height="52px">
-      <mat-card-title>{{user?.first_name}} {{user?.last_name}}</mat-card-title>
-      <mat-card-subtitle>{{user?.role}}</mat-card-subtitle>
+    <mat-card-title-group class="flex items-center gap-10">
+      <img class="profile-card-avatar"
+          [src]="user?.avatar_url ? user?.avatar_url : '../../../../../assets/icons/avatar-standart.svg'" alt=""
+          width="62px" height="62px">
+      <mat-card-title class="text-lg">{{user?.first_name}} {{user?.last_name}}</mat-card-title>
+      <mat-card-subtitle class="text-secondary">{{user?.role}}</mat-card-subtitle>
       
     </mat-card-title-group>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content class="pb-[20px]">
+    <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-1">
+        <div class="text-secondary">Email</div>
+        <div class="text-primary font-medium">{{user?.email}}</div>
+      </div>
+  
+      <div class="flex flex-col gap-1">
+        <div class="text-secondary">Phone Number</div>
+        <div class="text-primary font-medium">{{user?.phone_number}}</div>
+      </div>
+  
+      <div *ngIf="!!user?.webSite_url" class="flex flex-col gap-1">
+        <div class="text-secondary">WebSite</div>
+        <a [href]="user?.webSite_url" class="text-link font-medium">Click Link</a>
+      </div>
+    </div>
     
   </mat-card-content>
+
+  <button
+  mat-button
+  class="text-primary flex items-center gap-1 profile-card-btn"
+  (click)="onEdit()"
+  >
+    <img src="../../../../../assets/icons/edit.svg" alt="" width="18px" height="18px">
+    <p class="pt-[5px]">Редактировать</p>
+  </button>
 </mat-card>
