@@ -9,7 +9,7 @@ import { UserData } from 'shared/models/userData.model';
   styleUrls: ['./profile-page.component.less']
 })
 export class ProfilePageComponent implements OnInit {
-  user: UserData | undefined;
+  user!: UserData | null;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {

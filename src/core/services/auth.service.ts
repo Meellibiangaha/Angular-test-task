@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { ADMIN_PROFILE_DATA, USER_PROFILE_DATA } from 'shared/mocks/user-profile.mock';
 import { UserData } from 'shared/models/userData.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+    /** сохраняю в localStorage */
+    private readonly USER_KEY = 'authenticatedUser';
+    /** здесь будут браться данные из localStorage, если есть */
+    private userString: string | null = null;
+
     private usersArr: UserData[];
-    private userSubject = new Subject<UserData>();
+    private userSubject = new BehaviorSubject<UserData | null>(null);
     email = '';
     password = '';
-    isLoggedIn = true;
+    isLoggedIn = false;
 
     constructor(private dialog: MatDialog) {
+        /**При инициализации сервиса пытаемся получить данные из localStorage */
+        const userString = localStorage.getItem(this.USER_KEY);
+        const user = userString ? JSON.parse(userString) : null;
+        /** передаем в Subject*/
+        this.userSubject.next(user);
+
         this.usersArr = [ADMIN_PROFILE_DATA, USER_PROFILE_DATA];
     }
 
@@ -28,7 +39,9 @@ export class AuthService {
         const user = this.findUser(email, password);
 
         if (user) {
+            localStorage.setItem(this.USER_KEY, JSON.stringify(user));
             this.isLoggedIn = true;
+            this.userString = JSON.stringify(user);
             this.userSubject.next(user);
             this.dialog.closeAll();
         }
@@ -36,9 +49,23 @@ export class AuthService {
 
     public logout(): void {
         this.isLoggedIn = false;
+        localStorage.removeItem(this.USER_KEY);
+        this.userString = null;
+        this.userSubject.next(null);
     }
 
-    public getUser(): Observable<UserData> {
+    public getUser(): Observable<UserData | null> {
         return this.userSubject.asObservable();
+    }
+
+    /** получение из localStorage пользователя (в app component реализовал) */
+    public getAuthenticatedUser(): UserData | null {
+        this.isLoggedIn = !!this.userString;
+        try {
+            return this.userString ? JSON.parse(this.userString) : null;
+        } catch (error) {
+            console.error('Error parsing JSON', error);
+            return null;
+        }
     }
 }

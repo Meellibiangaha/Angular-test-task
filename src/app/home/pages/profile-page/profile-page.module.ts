@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { SharedModule } from 'shared'
+import {MatCardModule} from '@angular/material/card';
 
 import { ProfilePageComponent } from './components/profile-page.component'
 
@@ -17,7 +18,8 @@ const routes: Routes = [
         HttpClientModule,
         SharedModule,
         RouterModule.forChild(routes),
-        CommonModule
+        CommonModule,
+        MatCardModule
     ],
     declarations: [
         ProfilePageComponent

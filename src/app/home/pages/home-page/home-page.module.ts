@@ -3,9 +3,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { SharedModule } from 'shared'
+import {MatTableModule} from '@angular/material/table';
+
 import { HomePageComponent } from './components/home-page.component';
-
-
 
 
 const routes: Routes = [
@@ -19,7 +19,8 @@ const routes: Routes = [
         HttpClientModule,
         SharedModule,
         RouterModule.forChild(routes),
-        CommonModule
+        CommonModule,
+        MatTableModule
     ],
     declarations: [
         HomePageComponent,
