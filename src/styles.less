@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-icon-36{
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px !important;
+  height: 36px !important;
+  background-color: #8676b6;
+  border-radius: 36px;
+  
+  cursor: pointer;
+  transition-duration: .3s;
+  &:hover{
+    background-color: #73659b;
+  }
+  &::before{
+    color: #73659b;
+  }
+}
+
+.mat-body p, .mat-body-1 p, .mat-typography .mat-body p, .mat-typography .mat-body-1 p, .mat-typography p {
+  margin: 0;
+}

@@ -1,0 +1,25 @@
+<div class="login-dialog">
+  <div mat-dialog-title class="flex justify-between">
+    <h1 class="flex justify-center items-center">Sign In</h1>
+    <mat-icon fontIcon="cancel" class="mat-icon-36"></mat-icon>
+  </div>
+  
+  <div mat-dialog-content class="flex flex-col justify-center items-center">
+    <form action="" class="flex flex-col gap-5">
+      <mat-form-field class="w-[220px]">
+        <mat-label>Enter Email</mat-label>
+        <input matInput placeholder="Email" required>
+      </mat-form-field>
+    
+      <mat-form-field class="w-[220px]">
+        <mat-label>Enter Password</mat-label>
+        <input matInput placeholder="Password" required>
+      </mat-form-field>
+    </form>
+    
+  </div>
+  <div mat-dialog-actions class="flex gap-4">
+    <button mat-button class="text-primary login-dialog-button login-dialog-button--cancel">Cancel</button>
+    <button mat-button class="text-link login-dialog-button">Log In</button>
+  </div>
+</div>
