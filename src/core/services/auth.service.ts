@@ -16,15 +16,15 @@ export class AuthService {
     private userSubject = new BehaviorSubject<UserData | null>(null);
     email = '';
     password = '';
-    isLoggedIn = false;
+    isLoggedIn: boolean;
 
     constructor(private dialog: MatDialog) {
         /**При инициализации сервиса пытаемся получить данные из localStorage */
-        const userString = localStorage.getItem(this.USER_KEY);
-        const user = userString ? JSON.parse(userString) : null;
+        this.userString = localStorage.getItem(this.USER_KEY);
+        const user = this.userString ? JSON.parse(this.userString) : null;
         /** передаем в Subject*/
         this.userSubject.next(user);
-
+        this.isLoggedIn = !!this.userString;
         this.usersArr = [ADMIN_PROFILE_DATA, USER_PROFILE_DATA];
     }
 
