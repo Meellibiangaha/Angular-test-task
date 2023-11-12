@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginDialogComponent } from './login-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const MAT_DIALOG_IMPORTS =
     [
@@ -22,6 +23,7 @@ const MAT_DIALOG_IMPORTS =
   declarations: [LoginDialogComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MAT_DIALOG_IMPORTS
   ]
 })
