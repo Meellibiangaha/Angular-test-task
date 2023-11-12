@@ -13,6 +13,15 @@ export interface UserData{
   webSite_url: string | null;
   /** роль пользователя */
   role: Role;
+  /** аватар пользователя */
+  avatar_url: string | null;
+}
+
+export interface LoginData {
+  /** почта пользователя */
+  email: string;
+  /** пароль пользователя */
+  password: string;
 }
 
 export type Role = 'Admin' | 'User';

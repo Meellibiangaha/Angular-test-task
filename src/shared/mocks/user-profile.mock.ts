@@ -7,7 +7,8 @@ export const ADMIN_PROFILE_DATA: UserData = {
   last_name: 'Иванов',
   phone_number: '79281234567',
   webSite_url: 'admin.site.com',
-  role: 'Admin'
+  role: 'Admin',
+  avatar_url: ''
 }
 
 export const USER_PROFILE_DATA: UserData = {
@@ -17,5 +18,6 @@ export const USER_PROFILE_DATA: UserData = {
   last_name: 'Владимирович',
   phone_number: '79287654321',
   webSite_url: null,
-  role: 'User'
+  role: 'User',
+  avatar_url: 'user-test-avatar.svg'
 }

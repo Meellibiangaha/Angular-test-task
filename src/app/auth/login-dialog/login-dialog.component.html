@@ -20,6 +20,6 @@
   </div>
   <div mat-dialog-actions class="flex gap-4">
     <button mat-button class="text-primary login-dialog-button login-dialog-button--cancel" (click)="onCancel();">Cancel</button>
-    <button mat-button class="text-link login-dialog-button" [disabled]="submitButtonDisabled$ | async">Log In</button>
+    <button mat-button class="text-link login-dialog-button" [disabled]="submitButtonDisabled$ | async" (click)="onSubmith()">Log In</button>
   </div>
 </div>
