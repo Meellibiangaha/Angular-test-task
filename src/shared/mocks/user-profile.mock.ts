@@ -15,7 +15,7 @@ export const USER_PROFILE_DATA: UserData = {
   email: 'user@mail.ru',
   password: 'user123',
   first_name: 'Владимир',
-  last_name: 'Владимирович',
+  last_name: 'Владимиров',
   phone_number: '79287654321',
   webSite_url: null,
   role: 'User',
