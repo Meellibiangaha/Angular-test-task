@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 
 import { DataService } from './data.service';
 import { FindService } from './find.service';
+import { RouteService } from './route.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     constructor(
-        private dialog: MatDialog,
         private dataService: DataService,
-        private findService: FindService
+        private findService: FindService,
+        private routeService: RouteService
         ){}
 
 
@@ -35,5 +35,7 @@ export class AuthService {
         localStorage.removeItem(this.dataService.USER_KEY);
         this.dataService.userString = null;
         this.dataService.userSubject.next(null);
+
+        this.routeService.logOutRedirect();
     }
 }
