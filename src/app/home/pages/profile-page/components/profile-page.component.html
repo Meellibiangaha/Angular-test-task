@@ -1,4 +1,4 @@
-<mat-card *ngIf="editSwitch" class="profile-card">
+<mat-card *ngIf="profileService.editSwitch" class="profile-card">
   <mat-card-header>
     <mat-card-title-group class="flex items-center gap-10">
       <img class="profile-card-avatar"
@@ -43,7 +43,6 @@
 </mat-card>
 
 <profile-edit
-*ngIf="!editSwitch && user"
-[editSwitch]="editSwitch"
+*ngIf="!profileService.editSwitch && user"
 [user]="user"
 ></profile-edit>

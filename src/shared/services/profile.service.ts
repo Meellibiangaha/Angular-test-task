@@ -4,4 +4,6 @@ import { of } from 'rxjs';
 Injectable()
 export class ProfileService {
     public get profile$() { return of({}); }
+
+    public editSwitch = true;
 }
