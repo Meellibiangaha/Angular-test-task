@@ -15,7 +15,7 @@
   
 
   <div class="flex justify-end items-center gap-5 min-w-[300px]">
-    <p *ngIf="user" class="text-primary justify-self-center">{{user?.last_name}} {{user?.first_name | slice:0:1}}.</p>
+    <p *ngIf="user" class="text-primary justify-self-center">{{user.last_name}} {{user.first_name | slice:0:1}}.</p>
     <div class="flex justify-self-end">
       <auth-button></auth-button>
     </div>

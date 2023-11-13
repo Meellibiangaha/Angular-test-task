@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+
+
 
 import { AuthService } from 'core/services';
+
 import { UserData } from 'shared/models/userData.model';
 
 @Component({
@@ -10,7 +13,7 @@ import { UserData } from 'shared/models/userData.model';
 })
 export class ProfilePageComponent implements OnInit {
   user!: UserData | null;
-  constructor(private authService: AuthService) { }
+  editSwitch = true;
 
   ngOnInit(): void {
     this.authService.getUser().subscribe(user => {
@@ -18,8 +21,11 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-  public onEdit(){
-    
+
+  constructor(private authService: AuthService) {}
+
+  public onEdit() {
+    this.editSwitch = !this.editSwitch;
   }
 
 }

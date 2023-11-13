@@ -1,0 +1,62 @@
+<mat-card class="profile-edit">
+  <mat-card-header>
+    <mat-card-title-group class="flex items-center gap-10">
+      <img class="profile-edit-avatar"
+          [src]="user.avatar_url ? user.avatar_url : '../../../../../assets/icons/avatar-standart.svg'" alt=""
+          width="62px" height="62px">
+      <mat-card-title class="text-lg">{{user.first_name}} {{user.last_name}}</mat-card-title>
+      <mat-card-subtitle class="text-secondary">{{user.role}}</mat-card-subtitle>
+      
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content class="pb-[20px]">
+    <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-1">
+        <div class="text-secondary">Email</div>
+        <div class="text-primary font-medium">{{user.email}}</div>
+      </div>
+  
+      <form class="flex flex-col gap-5" [formGroup]="formGroup">
+        <mat-form-field class="w-[220px]">
+          <mat-label>First name</mat-label>
+          <input matInput type="text" placeholder="First name" formControlName="first_name" required>
+          <mat-hint>Осталось {{ 255 - (formGroup.controls['first_name'].value?.length ?? 0) }} символов</mat-hint>
+        </mat-form-field>
+      
+        <mat-form-field class="w-[220px]">
+          <mat-label>Last name</mat-label>
+          <input matInput type="text" placeholder="Last name" formControlName="last_name" required>
+          <mat-hint>Осталось {{ 255 - (formGroup.controls['last_name'].value?.length ?? 0) }} символов</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="w-[220px]">
+          <mat-label>Phone number</mat-label>
+          <input matInput type="text" placeholder="Phone number" formControlName="phone_number" required>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!!user.webSite_url" class="w-[220px]" hideRequiredMarker="true">
+          <mat-label>WebSite URL</mat-label>
+          <input matInput type="text" placeholder="WebSite URL" formControlName="webSite_url">
+        </mat-form-field>
+      </form>
+      
+    </div>
+    
+  </mat-card-content>
+
+  <div>
+    <button mat-button (click)="onCancel()">
+      Отмена
+    </button>
+
+    <button
+    mat-button
+    class="text-primary profile-edit-btn"
+    (click)="onSaveEdit()"
+    [disabled]="submitButtonDisabled$ | async"
+    >
+    Сохранить
+    </button>
+  </div>
+ 
+</mat-card>

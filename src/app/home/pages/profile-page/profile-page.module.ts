@@ -3,9 +3,16 @@ import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { SharedModule } from 'shared'
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field'
 
-import { ProfilePageComponent } from './components/profile-page.component'
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { ProfilePageComponent } from './components/profile-page.component';
+import { ProfileEditComponent } from './components/UI/profile-edit/profile-edit.component'
+import { MatInputModule } from '@angular/material/input'
+import { MatButtonModule } from '@angular/material/button'
+
 
 
 const routes: Routes = [
@@ -15,14 +22,22 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
+        CommonModule,
         HttpClientModule,
         SharedModule,
         RouterModule.forChild(routes),
-        CommonModule,
-        MatCardModule
+        
+        MatCardModule,
+
+        
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule
     ],
     declarations: [
-        ProfilePageComponent
+        ProfilePageComponent,
+        ProfileEditComponent
     ]
 })
 export class ProfilePageModule { }
