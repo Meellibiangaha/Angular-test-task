@@ -31,19 +31,16 @@ export class ProfileEditComponent {
       last_name: this.fb.control<UserData['last_name']>('', [
         Validators.required,
         Validators.pattern(/[\S]/),
-        Validators.minLength(10),
+        Validators.minLength(5),
         Validators.maxLength(255)
       ]),
       phone_number: this.fb.control<UserData['phone_number']>('', [
         Validators.required,
         Validators.pattern(/[\S]/),
-        Validators.minLength(5),
-        Validators.maxLength(255)
+        Validators.minLength(10),
+        Validators.maxLength(10)
       ]),
-      webSite_url: this.fb.control<UserData['webSite_url']>('', [
-        Validators.required,
-        Validators.pattern(/[\S]/),
-      ]),
+      webSite_url: this.fb.control<UserData['webSite_url']>('', []),
     });
 
     /**Проверка кнопки на валидность */
@@ -62,6 +59,7 @@ export class ProfileEditComponent {
   }
 
   public onSaveEdit() {
+    this.profileService.updateProfileData(this.formGroup.getRawValue());
     this.profileService.editSwitch = !this.profileService.editSwitch;
   }
 

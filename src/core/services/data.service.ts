@@ -30,6 +30,7 @@ export class DataService {
       /** передаем в Subject*/
       this.userSubject.next(user);
       this.isLoggedIn = !!this.userString;
+      /** для эмуляции БД, с последующим поиском */
       this.usersArr = [ADMIN_PROFILE_DATA, USER_PROFILE_DATA];
   }
 }

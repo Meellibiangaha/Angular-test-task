@@ -13,7 +13,6 @@ export class FindService {
   }
   /** Тоже самое, для диалога авторизации */
   public findDifferences(email: string, password: string): boolean {
-    let differencesLog;
     if (this.dataService.usersArr.find(user => user.email === email && user.password !== password)) {
       this.dataService.wrongPassword = true;
     }
