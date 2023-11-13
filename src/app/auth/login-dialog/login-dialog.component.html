@@ -11,7 +11,7 @@
         <input matInput type="email" placeholder="Email" formControlName="email" required>
       </mat-form-field>
 
-      <mat-form-field class="w-[220px] login-dialog-password" [class.error]="authService.wrongPassword">
+      <mat-form-field class="w-[220px] login-dialog-password" [class.error]="dataService.wrongPassword">
         <mat-label>Enter Password</mat-label>
         <input matInput type="password" placeholder="Password" formControlName="password" required>
       </mat-form-field>

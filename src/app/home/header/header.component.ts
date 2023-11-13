@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AuthService } from 'core/services';
+import { GetUserService } from 'core/services/get-user.service';
 import { UserData } from 'shared/models/userData.model';
 
 @Component({
@@ -8,12 +8,12 @@ import { UserData } from 'shared/models/userData.model';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less']
 })
-export class HeaderComponent{
+export class HeaderComponent {
   user!: UserData | null;
-  constructor(private authService: AuthService) { }
+  constructor(private getUserService: GetUserService) { }
 
   ngOnInit(): void {
-    this.authService.getUser().subscribe(user => {
+    this.getUserService.getUser().subscribe(user => {
       this.user = user;
     });
   }

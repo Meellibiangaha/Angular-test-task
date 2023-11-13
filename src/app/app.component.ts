@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 
-import { AuthService } from 'core/services';
+import { GetUserService } from 'core/services/get-user.service';
 import { UserData } from 'shared/models/userData.model';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.less']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.less']
 })
-export class AppComponent { 
-    authenticatedUser!: UserData | null;
+export class AppComponent {
+  authenticatedUser!: UserData | null;
 
-    constructor(private authService: AuthService) {}
-  
-    ngOnInit(): void {
-      this.authenticatedUser = this.authService.getAuthenticatedUser();
-    }
+  constructor(private getUserService: GetUserService) { }
+
+  ngOnInit(): void {
+    this.authenticatedUser = this.getUserService.getAuthenticatedUser();
+  }
 }

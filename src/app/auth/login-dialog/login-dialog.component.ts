@@ -8,6 +8,7 @@ import { Observable, map, startWith } from 'rxjs';
 import { AuthService } from 'core/services';
 
 import { UserData } from 'shared/models/userData.model';
+import { DataService } from 'core/services/data.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -17,19 +18,20 @@ import { UserData } from 'shared/models/userData.model';
 
 export class LoginDialogComponent {
   ngOnInit(): void {
-     /** Для проверки пароля
-      *  Сброс состояния при открытии формы */ 
-    this.authService.wrongPassword = false;
+    /** Для проверки пароля
+     *  Сброс состояния при открытии формы */
+    this.dataService.wrongPassword = false;
   }
-  
+
   /** formGroup: FormGroup; выдавал ошибку, скорее всего из-за версии*/
   protected formGroup: FormGroup<any>;
-  
+
   protected readonly submitButtonDisabled$: Observable<boolean>;
 
   constructor(
     @Inject(FormBuilder) private fb: FormBuilder,
     protected authService: AuthService,
+    protected dataService: DataService,
     public dialogRef: MatDialogRef<LoginDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
@@ -60,16 +62,16 @@ export class LoginDialogComponent {
     this.dialogRef.close();
   }
 
-  public onClose(){
+  public onClose() {
     this.dialogRef.close();
   }
 
-  public onCancel(){
+  public onCancel() {
     this.dialogRef.close();
   }
 
-  public onSubmith(){
+  public onSubmith() {
     this.authService.login(this.formGroup.getRawValue());
   }
-  
+
 }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { LoginDialogComponent } from 'app/auth/login-dialog/login-dialog.component';
 import { AuthService } from 'core/services';
+import { DataService } from 'core/services/data.service';
 
 
 @Component({
@@ -11,18 +12,22 @@ import { AuthService } from 'core/services';
   styleUrls: ['./auth-button.component.less']
 })
 export class AuthButtonComponent {
-  
-  constructor(private authService: AuthService, public dialog: MatDialog) {}
-  
-  public openDialog(){
-      const dialogRef = this.dialog.open(LoginDialogComponent, {
-          width: '420px'
-      });
+
+  constructor(
+    private authService: AuthService,
+    public dialog: MatDialog,
+    private dataService: DataService
+  ) { }
+
+  public openDialog() {
+    const dialogRef = this.dialog.open(LoginDialogComponent, {
+      width: '420px'
+    });
   }
   get isLoggedIn(): boolean {
-    return this.authService.isLoggedIn;
+    return this.dataService.isLoggedIn;
   }
-  
+
   public onClick() {
     if (this.isLoggedIn) {
       this.authService.logout();
@@ -30,5 +35,5 @@ export class AuthButtonComponent {
       this.openDialog()
     }
   }
-  
+
 }
