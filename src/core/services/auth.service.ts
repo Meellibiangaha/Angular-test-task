@@ -18,6 +18,10 @@ export class AuthService {
     password = '';
     isLoggedIn: boolean;
 
+    /** для проверки пароля и почты, для login-dialog */
+    public wrongPassword: boolean = false;
+    public wrongData: boolean = false;
+
     constructor(private dialog: MatDialog) {
         /**При инициализации сервиса пытаемся получить данные из localStorage */
         this.userString = localStorage.getItem(this.USER_KEY);
@@ -32,6 +36,17 @@ export class AuthService {
     private findUser(email: string, password: string): UserData | undefined {
         return this.usersArr.find(user => user.email === email && user.password === password);
     }
+    /** Тоже самое, для диалога авторизации */
+    private findDifferences(email: string, password: string): boolean{
+        let differencesLog;
+        if(this.usersArr.find(user => user.email === email && user.password !== password)){
+            this.wrongPassword = true;
+        }    
+        else{
+            this.wrongPassword = false;
+        }
+        return this.wrongPassword;
+    }
 
     /** К сожалению, из-за FormGroup'а пришлось тип 'any' ставить */
     public login(obj: any): void {
@@ -44,6 +59,9 @@ export class AuthService {
             this.userString = JSON.stringify(user);
             this.userSubject.next(user);
             this.dialog.closeAll();
+        }
+        else {
+            this.findDifferences(email, password);
         }
     }
 

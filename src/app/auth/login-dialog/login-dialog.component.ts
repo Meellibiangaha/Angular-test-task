@@ -16,7 +16,12 @@ import { UserData } from 'shared/models/userData.model';
 })
 
 export class LoginDialogComponent {
-
+  ngOnInit(): void {
+     /** Для проверки пароля
+      *  Сброс состояния при открытии формы */ 
+    this.authService.wrongPassword = false;
+  }
+  
   /** formGroup: FormGroup; выдавал ошибку, скорее всего из-за версии*/
   protected formGroup: FormGroup<any>;
   
@@ -24,7 +29,7 @@ export class LoginDialogComponent {
 
   constructor(
     @Inject(FormBuilder) private fb: FormBuilder,
-    private authService: AuthService,
+    protected authService: AuthService,
     public dialogRef: MatDialogRef<LoginDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {

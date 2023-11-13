@@ -2,30 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 
-.mat-icon-36{
+.mat-icon-36 {
   transform: scale(1.4);
 
   border-radius: 36px;
   cursor: pointer;
-  
-  &:hover::before{
+
+  &:hover::before {
     color: #544970;
   }
-  &::before{
+
+  &::before {
     transition-duration: .3s;
     color: #73659b;
   }
 }
 
 /** настройку Material UI можно вынести в отдельный файл */
-.mat-body p, .mat-body-1 p, .mat-typography .mat-body p, .mat-typography .mat-body-1 p, .mat-typography p {
+.mat-body p,
+.mat-body-1 p,
+.mat-typography .mat-body p,
+.mat-typography .mat-body-1 p,
+.mat-typography p {
   margin: 0;
 }
 
 .mat-card-header-text {
   margin: 0 !important;
+}
+
+
+.mat-form-field.error .mat-form-field-label {
+  color: rgb(244, 64, 52);
+}
+
+.mat-form-field.error .mat-form-field-underline {
+  background-color: rgba(244, 64, 52, .42);
 }
