@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { ProfileService } from './services'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { ProfileService } from './services';
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        MatSnackBarModule
     ],
     providers: [
         ProfileService
-    ]
+    ],
+    declarations: []
 })
 export class SharedModule { }
