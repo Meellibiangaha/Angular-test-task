@@ -12,7 +12,7 @@ import { UserData } from 'shared/models/userData.model';
 })
 export class ProfileEditComponent {
   @Input() user!: UserData;
-
+  
   protected formGroup: FormGroup;
 
   protected readonly submitButtonDisabled$: Observable<boolean>;
@@ -37,8 +37,8 @@ export class ProfileEditComponent {
       phone_number: this.fb.control<UserData['phone_number']>('', [
         Validators.required,
         Validators.pattern(/[\S]/),
-        Validators.minLength(10),
-        Validators.maxLength(10)
+        Validators.minLength(18),
+        Validators.maxLength(18)
       ]),
       webSite_url: this.fb.control<UserData['webSite_url']>('', []),
     });
@@ -52,6 +52,42 @@ export class ProfileEditComponent {
           this.formGroup.pristine,
       ),
     );
+    
+    /** для phone маски */
+    this.prevPhoneInputValue = '';
+  }
+
+  public prevPhoneInputValue: string;
+  public onChangePhone() {
+    let formattedValue = '';
+    // this.prevPhoneInputValue = this.formGroup.controls['phone_number'].value;
+  
+    let numericValue = this.formGroup.controls['phone_number'].value.replace(/[^\d]/g, '');
+    numericValue = (numericValue[0] === '7') ?  numericValue.substring(1) : numericValue;
+    console.log(this.prevPhoneInputValue);
+    console.log(numericValue);
+    //для вида +7_(***)_***-**-**
+    if (this.prevPhoneInputValue.length < numericValue.length) {
+      if (numericValue.length < 3) {
+        formattedValue = `+7 (${numericValue.substring(0, 3)}`;
+      } else if (numericValue.length === 3) {
+        formattedValue = `+7 (${numericValue.substring(0, 3)}) `;
+      } else if (numericValue.length < 6) {
+        formattedValue = `+7 (${numericValue.substring(0, 3)}) ${numericValue.substring(3, 6)}`;
+      } else if (numericValue.length === 6) {
+        formattedValue = `+7 (${numericValue.substring(0, 3)}) ${numericValue.substring(3, 6)}-`;
+      } else if (numericValue.length < 8) {
+        formattedValue = `+7 (${numericValue.substring(0, 3)}) ${numericValue.substring(3, 6)}-${numericValue.substring(6, 8)}`;
+      } else if (numericValue.length === 8) {
+        formattedValue = `+7 (${numericValue.substring(0, 3)}) ${numericValue.substring(3, 6)}-${numericValue.substring(6, 8)}-`;
+      } else if (numericValue.length <= 10) {
+        formattedValue = `+7 (${numericValue.substring(0, 3)}) ${numericValue.substring(3, 6)}-${numericValue.substring(6, 8)}-${numericValue.substring(8)}`;
+      }
+      this.formGroup.controls['phone_number'].setValue(formattedValue);
+    }
+    this.prevPhoneInputValue = numericValue;
+    
+    
   }
 
   public onCancel() {
